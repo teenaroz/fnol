@@ -1,0 +1,22 @@
+{
+  "name": "fnol",
+  "version": "1.0.0",
+  "description": "A basic fnol application",
+  "scripts": {
+    "start": "node express-server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/teenaroz/fnol.git"
+  },
+  "author": "Team",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/teenaroz/fnol/issues"
+  },
+  "homepage": "https://github.com/teenaroz/fnol#readme",
+  "dependencies": {
+    "express": "^4.13.4",
+    "path": "^0.12.7"
+  }
+}

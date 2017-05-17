@@ -1,0 +1,43 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script type="text/javascript">
+
+        function onFormSubmit() {
+            var nameValue = document.getElementById('name').value;
+            if (nameValue.length == 0) {
+                alert('Enter a valid name');
+                return;
+            }
+            document.getElementById('displayForm').innerHTML = "You Input is : "+ nameValue;
+        }
+
+    </script>
+</head>
+<body>
+<div>
+     
+    <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="user_name" value="">
+         
+    </div>
+     
+     
+     
+    <div class="button">
+           <input type="submit" id="btn" value="Submit" onclick="onFormSubmit()"/>
+         
+    </div>
+
+    <div>
+        <p><span id='displayForm'></span></p>
+    </div>
+
+
+</div>
+
+</body>
+</html>	
