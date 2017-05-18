@@ -1,43 +1,88 @@
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <script type="text/javascript">
-
-        function onFormSubmit() {
-            var nameValue = document.getElementById('name').value;
-            if (nameValue.length == 0) {
-                alert('Enter a valid name');
-                return;
-            }
-            document.getElementById('displayForm').innerHTML = "You Input is : "+ nameValue;
-        }
-
-    </script>
+<script type="text/javascript">
+	function onFormSubmit() {
+		var nameValue = document.getElementById('name').value;
+		var dateOfLoss = document.getElementById("dateOfLoss").value;
+		var descriptionOfLoss = document.getElementById("descriptionOfLoss").value;
+		var policeReportNo = document.getElementById("policeReportNo").value;
+		
+		if (nameValue.length == 0) {
+			alert('Enter a valid name');
+			return;
+		}
+		
+							      	
+		if(null == dateOfLoss || "" == dateOfLoss){
+			alert("Please Enter The Date of Loss");
+			return;
+		}
+		if(null == descriptionOfLoss || "" == descriptionOfLoss){
+			alert("Please Enter The Loss Description");
+			return;
+		}
+		if(null == policeReportNo || "" == policeReportNo){
+			alert("Please Enter The Police Report#");
+			return;
+		}
+		
+		var displayTxt = "You Input is : " + nameValue +
+		", You Date Of Loss is : " + dateOfLoss +
+		", Loss Description is : " + descriptionOfLoss +
+		", Police Report No is : " + policeReportNo;
+		
+		
+		
+		document.getElementById('displayForm').innerHTML = displayTxt;
+	}
+</script>
 </head>
 <body>
-<div>
-     
-    <div>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="user_name" value="">
-         
-    </div>
-     
-     
-     
-    <div class="button">
-           <input type="submit" id="btn" value="Submit" onclick="onFormSubmit()"/>
-         
-    </div>
-
-    <div>
-        <p><span id='displayForm'></span></p>
-    </div>
+	<div>
+		 
+		<div style="margin-bottom: 10px;">
+			    <label for="name">Name:</label>     
+				<input style="position:absolute; left:250px;" type="text" id="name"
+				name="user_name" value="" size="20">  
+		</div>
+		     
 
 
-</div>
+		<div style="margin-bottom: 15px; background-color:#999999;" id="LossInfo" class="section">
+			 Loss Information
+		</div>
+
+
+		<div style="margin-bottom: 10px;">
+			<label for="dateOfLoss">* Date of Loss (MM/DD/YYYY):</label> 
+			<input type="text" style="position:absolute; left:250px;" id="dateOfLoss" name="dateOfLoss" value="" size="20">
+		</div>
+
+		<div style="margin-bottom: 30px;">
+			<label for="descriptionOfLoss">* Facts of Accident:</label>
+			<TEXTAREA style="position:absolute; left:250px;" id="descriptionOfLoss" 
+				name="descriptionOfLoss" cols="35"></TEXTAREA>
+		</div>
+		<div style="margin-bottom: 10px;">
+			<label for="policeReportNo">* Police Report Number:</label>
+				<input type="text" style="position:absolute; left:250px;" id="policeReportNo" name="policeReportNo"
+				value="" size="20">
+		</div>
+
+		<div class="button">
+			   <input type="submit" id="btn" value="Submit"
+				onclick="onFormSubmit()" />  
+		</div>
+		<div>
+			<p>
+				<span id='displayForm'></span>
+			</p>
+		</div>
+
+	</div>
 
 </body>
-</html>	
+</html>
