@@ -1,131 +1,224 @@
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .page {
+            overflow: hidden;
+            position: relative;
+            min-height: 100%;
+            margin: 0 auto;
+            max-width: 57.5em;
+            border-top: 5px solid #ECAC00;
+        }
 
-<script type="text/javascript">
-	function onFormSubmit() {
-		var nameValue = document.getElementById('name').value;
-		var dateOfLoss = document.getElementById("dateOfLoss").value;
-		var descriptionOfLoss = document.getElementById("descriptionOfLoss").value;
-		var policeReportNo = document.getElementById("policeReportNo").value;
-		var nameValue = document.getElementById('name').value;
-		var  nameofDriver= document.getElementById("nameofDriver").value;
-		var  vehicleYear= document.getElementById("vehicleYear").value;
-		var  vehicleMake= document.getElementById("vehicleMake").value;
-		var  vehicleModel= document.getElementById("vehicleModel").value;
-		var alertText= "";
-		
-		if (nameValue.length == 0) {
-			alertText = "Please Enter a valid name\n"; 			
-		}	
-							      	
-		if(null == dateOfLoss || "" == dateOfLoss){			
-			alertText = alertText+"Please Enter The Date of Loss\n"; 			
-		}
-		if(null == descriptionOfLoss || "" == descriptionOfLoss){
-				alertText = alertText+"Please Enter The Loss Description\n";			
-		}
-		if(null == policeReportNo || "" == policeReportNo){			
-			alertText = alertText+"Please Enter The Police Report#n\n";			
-		}
-		if(null == nameofDriver || "" == nameofDriver){			
-			alertText = alertText+"Please Enter The name of the Driver\n"; 			
-		}
-		if(null == vehicleYear || "" == vehicleYear){
-				alertText = alertText+"Please Enter The vehicle Year\n";			
-		}
-		if(null == vehicleMake || "" == vehicleMake){			
-			alertText = alertText+"Please Enter The vehicle Make\n";			
-		}
-		if(null == vehicleModel || "" == vehicleModel){			
-			alertText = alertText+"Please Enter The vehicle Model";			
-		}
-		
-		if (alertText) {
-			alert(alertText);
-			}  		
-		
-		var displayTxt = "You Input is : " + nameValue +
-		", You Date Of Loss is : " + dateOfLoss +
-		", Loss Description is : " + descriptionOfLoss +
-		", Police Report No is : " + policeReportNo+
-		", Name of the Driver is : " + nameofDriver+
-		", Vehicle Year is : " + vehicleYear+
-		", Vehicle Make is : " + vehicleMake+		
-		", Vehicle Model is: " + vehicleModel;
-		document.getElementById('displayForm').innerHTML = displayTxt;
-	}
-</script>
+        .content {
+            padding: 20px 15px;
+            min-height: 420px;
+            background-color: #fbfbfb;
+            border: 1px solid #ccc;
+            z-index: 3;
+            position: relative;
+        }
+
+        .button {
+            border: none;
+            padding: 8px 15px 8px 15px;
+            background: #337ab7;
+            color: #fff;
+            box-shadow: 1px 1px 4px #337ab7;
+            -moz-box-shadow: 1px 1px 4px #337ab7;
+            -webkit-box-shadow: 1px 1px 4px #337ab7;
+            border-radius: 3px;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            text-align: center;
+            font-size: medium;
+            font-weight: bold;
+        }
+
+        .btn-outer {
+            margin-top: 30px;
+        }
+
+        .form-style {
+            max-width: 500px;
+            padding: 20px 12px 10px 20px;
+            font: 13px Arial, Helvetica, sans-serif;
+        }
+
+        .form-style-heading {
+            font-weight: bold;
+            font-style: italic;
+            border-bottom: 2px solid #ddd;
+            margin-bottom: 20px;
+            font-size: 15px;
+            padding-bottom: 3px;
+        }
+
+        .form-style label {
+            display: block;
+            margin: 0 0 15px 0;
+        }
+
+        .form-style label > span {
+            width: 120px;
+            font-weight: bold;
+            float: left;
+            padding-top: 8px;
+            padding-right: 5px;
+        }
+
+        .form-style span.required {
+            color: red;
+        }
+
+        .form-style input.input-field {
+            width: 48%;
+        }
+
+        .form-style-error {
+            color: #D8000C;
+            font-weight: bold;
+            padding-bottom: 10px;
+        }
+
+        .form-style-success {
+            color: #4F8A10;
+            padding-bottom: 10px;
+            font-size: 15px;
+        }
+
+        .form-style input.input-field {
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            border: 1px solid #C2C2C2;
+            box-shadow: 1px 1px 4px #EBEBEB;
+            -moz-box-shadow: 1px 1px 4px #EBEBEB;
+            -webkit-box-shadow: 1px 1px 4px #EBEBEB;
+            border-radius: 3px;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            padding: 7px;
+            outline: none;
+        }
+
+        .form-style .input-field:focus {
+            border: 1px solid #a3cfe0;
+        }
+
+        .form-style input[type=submit]:hover,
+        .form-style input[type=button]:hover {
+            background: #EA7B00;
+            color: #fff;
+        }
+    </style>
+
+    <script type="text/javascript">
+        let fields = ['phFirstName', 'phLastName', 'phPhoneNumber', 'phContactEmail', 'dateOfLoss', 'descriptionOfLoss', 'policeReportNo', 'nameofDriver', 'vehicleYear', 'vehicleMake', 'vehicleModel', 'dName', 'dContact'];
+        function onFormSubmit() {
+            var formValues = {};
+            formValues.phFirstName = document.getElementById("phFirstName").value;
+            formValues.phLastName = document.getElementById("phLastName").value;
+            formValues.phPhoneNumber = document.getElementById("phPhoneNumber").value;
+            formValues.phContactEmail = document.getElementById("phContactEmail").value;
+            formValues.dateOfLoss = document.getElementById("dateOfLoss").value;
+            formValues.descriptionOfLoss = document.getElementById("descriptionOfLoss").value;
+            formValues.policeReportNo = document.getElementById("policeReportNo").value;
+            formValues.nameofDriver = document.getElementById("nameofDriver").value;
+            formValues.vehicleYear = document.getElementById("vehicleYear").value;
+            formValues.vehicleMake = document.getElementById("vehicleMake").value;
+            formValues.vehicleModel = document.getElementById("vehicleModel").value;
+            formValues.dName = document.getElementById("dName").value;
+            formValues.dContact = document.getElementById("dContact").value;
+
+            document.getElementById('successMessage').style.display = "none";
+            document.getElementById('validationError').style.display = "none";
+
+            if (Object.keys(formValues).length === 0 || isFieldEmpty(formValues)) {
+                document.getElementById('validationError').style.display = "block";
+            } else {
+                displayForm(formValues);
+            }
+        }
+
+        function displayForm(data) {
+            const claimNumber = 'C' + parseInt(Math.random() * 10000000000);
+            document.getElementById("successMessage").innerHTML = '<strong>Hey ' + data.phFirstName + ' ' + data.phLastName + '</strong>, your claim has been submitted successfully.. <br>Your claim number is - ' + claimNumber;
+            document.getElementById('successMessage').style.display = "block";
+            document.getElementById('formArea').style.display = "none";
+        }
+
+        function isFieldEmpty(formValues) {
+            return fields.some(function (fieldName) {
+                return !formValues[fieldName];
+            });
+        }
+    </script>
 </head>
 <body>
-	<div>
-		 
-		<div style="margin-bottom: 10px;">
-			    <label for="name">Name:</label>     
-				<input style="position:absolute; left:250px;" type="text" id="name"
-				name="user_name" value="" size="20">  
-		</div>
-		     
+<div class="page content form-style">
+    <h2>First Notice Of Loss</h2>
+
+    <div class="form-style-success"><span id="successMessage" style="display: none;"></span></div>
+    <div class="form-style-error">
+        <span id="validationError" style="display: none;">Please enter all the required(*) fields...</span>
+    </div>
+
+    <div id="formArea">
+
+        <div class="form-style-heading">Policy Holder information</div>
+
+        <label for="phFirstName"><span>First Name <span class="required">*</span></span>
+            <input type="text" class="input-field" id="phFirstName" name="phFirstName" value=""/></label>
+        <label for="phLastName"><span>Last Name <span class="required">*</span></span>
+            <input type="text" class="input-field" id="phLastName" name="phLastName" value=""/></label>
+        <label for="phPhoneNumber"><span>Phone Number <span class="required">*</span> </span>
+            <input type="text" class="input-field" id="phPhoneNumber" name="phPhoneNumber" value=""/></label>
+        <label for="phContactEmail"><span>Email <span class="required">*</span></span>
+            <input type="text" class="input-field" id="phContactEmail" name="phContactEmail" value=""/></label>
 
 
-		<div style="margin-bottom: 15px; background-color:#999999;" id="LossInfo" class="section">
-			 Loss Information
-		</div>
+        <div class="form-style-heading">Loss Information</div>
+
+        <label for="dateOfLoss"><span> Date of Loss (MM/DD/YYYY)<span class="required">*</span></span>
+            <input type="text" id="dateOfLoss" name="dateOfLoss" value="" class="input-field"></label>
+        <label for="descriptionOfLoss"><span>Facts of Accident<span class="required">*</span></span>
+            <TEXTAREA id="descriptionOfLoss" name="descriptionOfLoss" cols="31" class="input-field"></TEXTAREA></label>
+        <label for="policeReportNo"><span>Police Report Number<span class="required">*</span></span>
+            <input type="text" class="input-field" id="policeReportNo" name="policeReportNo" value=""></label>
 
 
-		<div style="margin-bottom: 10px;">
-			<label for="dateOfLoss">* Date of Loss (MM/DD/YYYY):</label> 
-			<input type="text" style="position:absolute; left:250px;" id="dateOfLoss" name="dateOfLoss" value="" size="20">
-		</div>
+        <div class="form-style-heading">Vehicle Details</div>
 
-		<div style="margin-bottom: 30px;">
-			<label for="descriptionOfLoss">* Facts of Accident:</label>
-			<TEXTAREA style="position:absolute; left:250px;" id="descriptionOfLoss" 
-				name="descriptionOfLoss" cols="35"></TEXTAREA>
-		</div>
-		<div style="margin-bottom: 10px;">
-			<label for="policeReportNo">* Police Report Number:</label>
-				<input type="text" style="position:absolute; left:250px;" id="policeReportNo" name="policeReportNo"
-				value="" size="20">
-		</div>
-		
-		<div style="margin-bottom: 15px; background-color:#999999;" id="vehicleDetails" class="section">
-			 Vehicle Details
-		</div>
-		
-		<div style="margin-bottom: 10px;">
-			<label for="dateOfLoss">* Name of the driver:</label> 
-			<input type="text" style="position:absolute; left:250px;" id="nameofDriver" name="nameofDriver" value="" size="20">
-		</div>
 
-		<div style="margin-bottom: 30px;">
-			<label for="vehicleYear">* Vehicle Year:</label>
-				<input type="text" style="position:absolute; left:250px;" id="vehicleYear" name="vehicleYear"
-				value="" size="20">
-		</div>
-		<div style="margin-bottom: 10px;">
-			<label for="vehicleMake">* Vehicle Make:</label>
-				<input type="text" style="position:absolute; left:250px;" id="vehicleMake" name="vehicleMake"
-				value="" size="20">
-		</div>
-		<div style="margin-bottom: 10px;">
-			<label for="vehicleModel">* Vehicle Model:</label>
-				<input type="text" style="position:absolute; left:250px;" id="vehicleModel" name="vehicleModel"
-				value="" size="20">
-		</div>			
+        <label for="dateOfLoss"><span>Name of the driver:<span class="required">*</span></span>
+            <input type="text" id="nameofDriver" name="nameofDriver" value="" class="input-field"></label>
+        <label for="vehicleYear"><span>Vehicle Year:<span class="required">*</span></span>
+            <input type="text" id="vehicleYear" name="vehicleYear" class="input-field" value="" size="20"></label>
+        <label for="vehicleMake"><span>Vehicle Make:<span class="required">*</span></span>
+            <input type="text" id="vehicleMake" name="vehicleMake" class="input-field"></label>
+        <label for="vehicleModel"><span>Vehicle Model<span class="required">*</span></span>
+            <input type="text" id="vehicleModel" name="vehicleModel" class="input-field" value="" size="20"></label>
 
-		<div class="button">
-			   <input type="submit" id="btn" value="Submit"
-				onclick="onFormSubmit()" />  
-		</div>
-		<div>
-			<p>
-				<span id='displayForm'></span>
-			</p>
-		</div>
 
-	</div>
+        <div class="form-style-heading">Other Drivers Info</div>
+
+        <label for="dName"><span>Other Driver's Full Name <span class="required">*</span></span>
+            <input type="text" class="input-field" id="dName" name="dName" value=""/></label>
+        <label for="dContact"><span>Other Driver's Contact <span class="required">*</span></span>
+            <input type="text" class="input-field" id="dContact" name="dContact" value=""/></label>
+
+
+        <div class="btn-outer">
+            <label><span>&nbsp;</span><input class="button" id="btn" value="Submit Claim"
+                                             onclick="onFormSubmit()"/></label>
+        </div>
+
+    </div>
+
+</div>
 
 </body>
 </html>
