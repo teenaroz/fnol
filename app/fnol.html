@@ -9,46 +9,64 @@
 		var dateOfLoss = document.getElementById("dateOfLoss").value;
 		var descriptionOfLoss = document.getElementById("descriptionOfLoss").value;
 		var policeReportNo = document.getElementById("policeReportNo").value;
+		var nameValue = document.getElementById('name').value;
+		var  nameofDriver= document.getElementById("nameofDriver").value;
+		var  vehicleYear= document.getElementById("vehicleYear").value;
+		var  vehicleMake= document.getElementById("vehicleMake").value;
+		var  vehicleModel= document.getElementById("vehicleModel").value;
+		var alertText= "";
 		
 		if (nameValue.length == 0) {
-			alert('Enter a valid name');
-			return;
-		}
-		
+			alertText = "Please Enter a valid name\n"; 			
+		}	
 							      	
-		if(null == dateOfLoss || "" == dateOfLoss){
-			alert("Please Enter The Date of Loss");
-			return;
+		if(null == dateOfLoss || "" == dateOfLoss){			
+			alertText = alertText+"Please Enter The Date of Loss\n"; 			
 		}
 		if(null == descriptionOfLoss || "" == descriptionOfLoss){
-			alert("Please Enter The Loss Description");
-			return;
+				alertText = alertText+"Please Enter The Loss Description\n";			
 		}
-		if(null == policeReportNo || "" == policeReportNo){
-			alert("Please Enter The Police Report#");
-			return;
+		if(null == policeReportNo || "" == policeReportNo){			
+			alertText = alertText+"Please Enter The Police Report#n\n";			
 		}
+		if(null == nameofDriver || "" == nameofDriver){			
+			alertText = alertText+"Please Enter The name of the Driver\n"; 			
+		}
+		if(null == vehicleYear || "" == vehicleYear){
+				alertText = alertText+"Please Enter The vehicle Year\n";			
+		}
+		if(null == vehicleMake || "" == vehicleMake){			
+			alertText = alertText+"Please Enter The vehicle Make\n";			
+		}
+		if(null == vehicleModel || "" == vehicleModel){			
+			alertText = alertText+"Please Enter The vehicle Model";			
+		}
+		
+		if (alertText) {
+			alert(alertText);
+			}  		
 		
 		var displayTxt = "You Input is : " + nameValue +
 		", You Date Of Loss is : " + dateOfLoss +
 		", Loss Description is : " + descriptionOfLoss +
-		", Police Report No is : " + policeReportNo;
-		
-		
-		
+		", Police Report No is : " + policeReportNo+
+		", Name of the Driver is : " + nameofDriver+
+		", Vehicle Year is : " + vehicleYear+
+		", Vehicle Make is : " + vehicleMake+		
+		", Vehicle Model is: " + vehicleModel;
 		document.getElementById('displayForm').innerHTML = displayTxt;
 	}
 </script>
 </head>
 <body>
 	<div>
-		 
+		 
 		<div style="margin-bottom: 10px;">
-			    <label for="name">Name:</label>     
+			    <label for="name">Name:</label>     
 				<input style="position:absolute; left:250px;" type="text" id="name"
-				name="user_name" value="" size="20">  
+				name="user_name" value="" size="20">  
 		</div>
-		     
+		     
 
 
 		<div style="margin-bottom: 15px; background-color:#999999;" id="LossInfo" class="section">
@@ -71,10 +89,35 @@
 				<input type="text" style="position:absolute; left:250px;" id="policeReportNo" name="policeReportNo"
 				value="" size="20">
 		</div>
+		
+		<div style="margin-bottom: 15px; background-color:#999999;" id="vehicleDetails" class="section">
+			 Vehicle Details
+		</div>
+		
+		<div style="margin-bottom: 10px;">
+			<label for="dateOfLoss">* Name of the driver:</label> 
+			<input type="text" style="position:absolute; left:250px;" id="nameofDriver" name="nameofDriver" value="" size="20">
+		</div>
+
+		<div style="margin-bottom: 30px;">
+			<label for="vehicleYear">* Vehicle Year:</label>
+				<input type="text" style="position:absolute; left:250px;" id="vehicleYear" name="vehicleYear"
+				value="" size="20">
+		</div>
+		<div style="margin-bottom: 10px;">
+			<label for="vehicleMake">* Vehicle Make:</label>
+				<input type="text" style="position:absolute; left:250px;" id="vehicleMake" name="vehicleMake"
+				value="" size="20">
+		</div>
+		<div style="margin-bottom: 10px;">
+			<label for="vehicleModel">* Vehicle Model:</label>
+				<input type="text" style="position:absolute; left:250px;" id="vehicleModel" name="vehicleModel"
+				value="" size="20">
+		</div>			
 
 		<div class="button">
-			   <input type="submit" id="btn" value="Submit"
-				onclick="onFormSubmit()" />  
+			   <input type="submit" id="btn" value="Submit"
+				onclick="onFormSubmit()" />  
 		</div>
 		<div>
 			<p>
