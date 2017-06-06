@@ -1,0 +1,26 @@
+<html>
+
+<head>
+
+<script src="angular.js"></script>
+<script src="assigmentModule.js"></script>
+</head>
+
+<body ng-app="assignmentApp1">
+
+
+	<div ng-controller="simpleController">
+	<script>var averageMarks = 0;</script>
+		<div>Enter Name : <input type="text" ng-model="inputBoxName" id="inputBoxName" /></div>
+		<div>Enter Mark 1: <input type="text" ng-model="inputBoxMark1" id="inputBoxMark1" /></div>
+		<div>Enter Mark 2: <input type="text" ng-model="inputBoxMark2" id="inputBoxMark2" /></div>		
+		<div>Enter Mark 3: <input type="text" ng-model="inputBoxMark3" id="inputBoxMark3" /></div>
+		
+		<div><input type="button" value="Update Info" ng-click="updateStudentDetails()" /></div>
+		<div id="output">Name:{{inputBoxName}}, Average Marks: {{averageMarks}}</div>
+	</div>
+
+	
+
+</body>
+</html>

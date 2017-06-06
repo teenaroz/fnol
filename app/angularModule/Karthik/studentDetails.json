@@ -1,0 +1,18 @@
+{
+  "studentInfo": [
+    {
+      "id": 1,
+      "name": "john",
+      "subject1Mark": 85,
+      "subject2Mark": 75,
+      "subject3Mark": 95
+    },
+    {
+      "name": "test1",
+      "subject1Mark": "76",
+      "subject2Mark": "99",
+      "subject3Mark": "88",
+      "id": 2
+    }
+  ]
+}
