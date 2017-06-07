@@ -1,0 +1,46 @@
+<html>
+    <head>
+
+        <script src="angular.js"></script>
+        <script src="studentController.js"></script>
+    </head>
+
+    <!-- Declare a new AngularJS app and associate the controller -->
+    <form ng-app="studentApp" ng-controller="studentController">
+
+        Enter Student Name: <input type="text" ng-model="studentName"><br>
+        Marks in English :  <input type="text" ng-model="subject1"><br>
+        Marks in History :  <input type="text" ng-model="subject2"><br>
+        Marks in Maths :  <input type="text" ng-model="subject3"><br>
+        <br>
+        Student Name: {{studentName}}
+        <br>
+        <br>
+        <span>Average Marks : {{calcAvg()}}</span>
+        <br><br>
+        <input type="button" value="Display Student Details" ng-click="displayStudentDetails"/>
+        <table border="1" style="display : none">
+            <thead>
+            <tr>
+                <th>Subject</th>
+                <th>Marks</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="data in marks">
+                <td>{{ data.subject }}</td>
+                <td>{{ data.marks }}</td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+
+                <th>Total</th>
+                <th>{{ marks}}</th>
+            </tr>
+            </tfoot>
+        </table>
+
+
+    </form>
+</html>
