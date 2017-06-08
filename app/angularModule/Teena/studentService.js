@@ -1,7 +1,7 @@
 var app = angular.module("studentApp", []);
 
 app.service('displayDetails', function() {
-    this.calculate = function (x) {
+    this.displayStudentDetails = function (x) {
         return "test";
     }
 });

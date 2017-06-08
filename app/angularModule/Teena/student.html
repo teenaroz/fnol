@@ -1,46 +1,63 @@
 <html>
-    <head>
+<head>
 
-        <script src="angular.js"></script>
-        <script src="studentController.js"></script>
-    </head>
+    <script src="angular.js"></script>
+    <script src="studentController.js"></script>
+</head>
 
-    <!-- Declare a new AngularJS app and associate the controller -->
-    <form ng-app="studentApp" ng-controller="studentController">
+<!-- Declare a new AngularJS app and associate the controller -->
+<form ng-app="studentApp" ng-controller="studentController" name="studentForm">
 
-        Enter Student Name: <input type="text" ng-model="studentName"><br>
-        Marks in English :  <input type="text" ng-model="subject1"><br>
-        Marks in History :  <input type="text" ng-model="subject2"><br>
-        Marks in Maths :  <input type="text" ng-model="subject3"><br>
-        <br>
-        Student Name: {{studentName}}
-        <br>
-        <br>
-        <span>Average Marks : {{calcAvg()}}</span>
-        <br><br>
-        <input type="button" value="Display Student Details" ng-click="displayStudentDetails"/>
-        <table border="1" style="display : none">
-            <thead>
-            <tr>
-                <th>Subject</th>
-                <th>Marks</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="data in marks">
-                <td>{{ data.subject }}</td>
-                <td>{{ data.marks }}</td>
-            </tr>
-            </tbody>
-            <tfoot>
-            <tr>
+    <p>Enter Student Name: <input type="text" name="name" ng-model="studentName" required>
+        <span style="color:red" ng-show="studentForm.name.$dirty && studentForm.name.$invalid">
+            <span ng-show="studentForm.name.$error.required">Required Field.</span>
+        </span>
+    </p>
+    <p>Marks in English : <input type="number" name="sub1" ng-model="subject1"  min="0" max="100" required>
+        <span style="color:red" ng-show="studentForm.sub1.$dirty && studentForm.sub1.$invalid">
+            <span ng-show="studentForm.sub1.$error.required">Required Field.</span>
+        </span>
+    </p>
 
-                <th>Total</th>
-                <th>{{ marks}}</th>
-            </tr>
-            </tfoot>
-        </table>
+    <p>Marks in History : <input type="number" name="sub2" ng-model="subject2" min="0" max="100" required>
+    <span style="color:red" ng-show="studentForm.sub2.$dirty && studentForm.sub2.$invalid">
+            <span ng-show="studentForm.sub2.$error.required">Required Field.</span>
+        </span>
+    </p>
+    <p>Marks in Maths : <input type="number" name="sub3" ng-model="subject3" min="0" max="100" required>
+        <span style="color:red" ng-show="studentForm.sub3.$dirty && studentForm.sub3.$invalid">
+            <span ng-show="studentForm.sub3.$error.required">Required Field.</span>
+        </span>
+    </p>
+    <br>
+    Student Name: {{studentName}}
+    <br>
+    <br>
+    <span>Average Marks : {{calcAvg()}}</span>
+    <br><br>
+    <input type="button" value="Display Student Details" ng-click="displayStudentDetails" style="display : none"/>
+    <table border="1" style="display : none">
+        <thead>
+        <tr>
+            <th>Subject</th>
+            <th>Marks</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="data in marks">
+            <td>{{ data.subject }}</td>
+            <td>{{ data.marks }}</td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+
+            <th>Total</th>
+            <th>{{ marks}}</th>
+        </tr>
+        </tfoot>
+    </table>
 
 
-    </form>
+</form>
 </html>
