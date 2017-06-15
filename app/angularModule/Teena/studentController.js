@@ -1,20 +1,7 @@
 var app = angular.module("studentApp", []);
 
 app.controller('studentController', function($scope) {
-    $scope.marks = [
-        {
-            subject : 'English',
-            marks: $scope.subject1
-        },
-        {
-            subject : 'History',
-            marks: $scope.subject2
-        },
-        {
-            subject : 'Maths',
-            marks: $scope.subject3
-        }
-    ];
+    $scope.marksList = [];
     $scope.calcAvg = function(){
         var total = 0;
         var sub1 = !!$scope.subject1 ? parseInt($scope.subject1) : null;
@@ -25,6 +12,15 @@ app.controller('studentController', function($scope) {
         }
         return total;
     };
+
+    $scope.displayStudentDetails = function() {
+        var data = {
+            "mark1" : $scope.subject1,
+            "mark2" : $scope.subject2,
+            "mark3" : $scope.subject3
+        };
+        $scope.marksList.push(data);
+    }
 });
 
 

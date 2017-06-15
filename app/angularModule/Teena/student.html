@@ -35,26 +35,20 @@
     <br>
     <span>Average Marks : {{calcAvg()}}</span>
     <br><br>
-    <input type="button" value="Display Student Details" ng-click="displayStudentDetails" style="display : none"/>
-    <table border="1" style="display : none">
-        <thead>
-        <tr>
-            <th>Subject</th>
-            <th>Marks</th>
-        </tr>
-        </thead>
+    <p><input type="button" value="Display Student Details" ng-click="displayStudentDetails()"/><br></p>
+    <table border="1">
         <tbody>
-        <tr ng-repeat="data in marks">
-            <td>{{ data.subject }}</td>
-            <td>{{ data.marks }}</td>
+        <tr>
+            <td>Mark1</td>
+            <td>Mark2</td>
+            <td>Mark3</td>
+        </tr>
+        <tr ng-repeat="data in marksList">
+            <td>{{ data.mark1 }}</td>
+            <td>{{ data.mark2 }}</td>
+            <td>{{ data.mark3 }}</td>
         </tr>
         </tbody>
-        <tfoot>
-        <tr>
-
-            <th>Total</th>
-            <th>{{ marks}}</th>
-        </tr>
         </tfoot>
     </table>
 
