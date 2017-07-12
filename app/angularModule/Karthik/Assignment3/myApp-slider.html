@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+    <title>Creating A Custom "Show" Directive In AngularJS</title> 
+</head>
+<body>
+ 
+ <div data-ng-controller="SliderController">
+    <h1>Creating A Custom "Show" Directive In AngularJS</h1> 
+    <p><a ng-click="toggle()">Toggle Elements</a></p> 
+    <ul>
+        <li bn-slide-show="isVisible" slide-show-duration="2000"> 
+            Using bnSlideShow 
+        </li>
+        <li ng-show="isVisible"> 
+            Using ngShow 
+        </li>
+    </ul>
+  </div>   
+    
+</body>
+</html>

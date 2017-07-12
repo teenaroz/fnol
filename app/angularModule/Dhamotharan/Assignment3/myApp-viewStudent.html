@@ -1,0 +1,45 @@
+<html>
+<head>
+<style>
+table, th, td {
+	border: 1px solid black;
+}
+
+th {
+	background-color: #4CAF50;
+	color: white;
+}
+Try
+ 
+it
+ 
+Yourself
+ 
+»
+</style>
+</head>
+<body>
+
+	<div ng-controller="viewStudentController">
+		<h2>Student details</h2>
+		<table>
+			<tr>
+			<th>Student Name</th>
+			<th>Age</th>
+			<th>Id</th>
+			<th>Action</th>
+			</tr>
+			<tr ng-repeat="student in students | orderBy:'age'">
+				<td>{{student.name | uppercase}}</td>
+				<td>{{student.age}}</td>
+				<td>{{student.id}}</td>
+				<td><input type="submit" ng-click="remove(student)"
+				value="delete" /></td>
+				
+			</tr>
+		</table>
+
+	</div>
+
+</body>
+</html>
