@@ -1,6 +1,5 @@
 package com.java.student.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +22,6 @@ public class StudentController {
 	StudentRepository repository;
 	
 	@RequestMapping(value = "/add", method = RequestMethod.PUT)
-	@HystrixCommand(fallbackMethod = "displayStudents")	
 	public String add(@RequestBody Student student) {
 
 		repository.save(student);
@@ -32,7 +30,7 @@ public class StudentController {
 	}
 
 	@RequestMapping(value = "/findAll", method = RequestMethod.GET)
-	@HystrixCommand(fallbackMethod = "displayStudents")
+	@HystrixCommand(fallbackMethod = "fallBack")
 	public List<Student> getStudent() {
 
 		return repository.findAll();
@@ -40,28 +38,24 @@ public class StudentController {
 	}
 
 	@RequestMapping(value = "/getStudenByName", method = RequestMethod.GET)
-	@HystrixCommand(fallbackMethod = "displayStudents")
 	public List<Student> getStudentByName(@RequestParam("name") String studentName) {
 
 		return repository.findByName(studentName);
 	}
 	
 	@RequestMapping(value = "/getStudenById", method = RequestMethod.GET)
-	@HystrixCommand(fallbackMethod = "displayStudents")
 	public List<Student> getStudentById(@RequestParam("id") String studentId) {
 
 		return repository.findByName(studentId);
 	}
 
 	@RequestMapping(value = "/getStudentBySubject", method = RequestMethod.GET)
-	@HystrixCommand(fallbackMethod = "displayStudents")
 	public List<Student> getStudentBySubject(@RequestParam("subject") String subject) {
 		return repository.findBySubject(subject);
 
 	}
 	
 	@RequestMapping(value = "/updateStudent", method = RequestMethod.POST)
-	@HystrixCommand(fallbackMethod = "displayStudents")
 	public String updateStudent(@RequestBody Student student) {
 
 		if (repository.findById(student.getId()) != null) {
@@ -85,8 +79,8 @@ public class StudentController {
 
 
 
-	public List<Student> displayStudents() {
-		return new ArrayList<Student>();
+	public List<Student> fallBack() {		  
+		return repository.findAll();
 	}
 
 }
